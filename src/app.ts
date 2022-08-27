@@ -22,6 +22,17 @@ import { IRoom, Room } from "./room"
 import { ISession, Session } from "./session"
 import { IStudio, Studio } from "./studio"
 
+import {bookingSchema, bookingModel,
+    assetSchema, assetModel,
+    clientSchema, clientModel,
+    engineerSchema, engineerModel,
+    roomSchema, roomModel,
+    sessionSchema, sessionModel,
+    studioSchema, studioModel} from "./schemas"
+
+
+
+
 
 
 
