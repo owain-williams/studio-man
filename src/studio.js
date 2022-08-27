@@ -3,11 +3,12 @@ exports.__esModule = true;
 exports.Studio = void 0;
 var Studio = /** @class */ (function () {
     function Studio(studio) {
+        this._id = studio._id;
         this.authID = studio.authID;
         this.studioName = studio.studioName;
-        this.rooms = studio.rooms;
-        this.engineers = studio.engineers;
-        this.assets = studio.assets;
+        this.roomIDs = studio.roomIDs;
+        this.engineerIDs = studio.engineerIDs;
+        this.assetIDs = studio.assetIDs;
         this.logoURL = studio.logoURL;
     }
     return Studio;

@@ -1,21 +1,22 @@
 interface IEngineer {
-    name: string;
+    _id: bigint;
     firstName: string;
-    lastName: string;
-    rate:number;
+    lastName?: string;
+    rate?:number;
     email?: string;
     phone?: string;
 }
 
 class Engineer {
-    name: string;
+    _id: bigint;
+    name?: string;
     firstName: string;
-    lastName: string;
-    rate:number;
+    lastName?: string;
+    rate?:number;
     email?: string;
     phone?: string;
     constructor(engineer: IEngineer) {
-        this.name = engineer.name;
+        this.name = engineer.firstName + " " + engineer.lastName;
         this.firstName = engineer.firstName;
         this.lastName = engineer.lastName;
         this.rate = engineer.rate;
