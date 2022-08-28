@@ -31,11 +31,11 @@ import {bookingSchema, bookingModel,
     sessionSchema, sessionModel,
     studioSchema, studioModel} from "./schemas"
 
-app.get('/', (req, res) => {
-    res.render('pages/index')
-})
+app.get("/api", (req, res) => {
+    res.json({ message: "Hello from Express!" });
+});
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)
 })
