@@ -1,7 +1,6 @@
 require('dotenv').config()
 // console.log(process.env)
 const express = require('express')
-const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const path = require('path')
@@ -14,8 +13,6 @@ mongoose.connect(mongoURI)
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(express.static('public'))
-app.set('views', path.join(__dirname, "..", 'views'));
-app.set('view engine', 'ejs')
 
 // Import custom classes
 import { IBooking, Booking } from "./booking"
