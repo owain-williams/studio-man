@@ -35,6 +35,95 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from Express!" });
 });
 
+app.route("/api/studios")
+.get((req, res) => {
+    studioModel.find((err, studios) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(studios)
+        }
+    }).sort({studioName: 1})
+}).post((req, res) => {
+    const newStudio = new studioModel(req.body)
+    newStudio.save((err, savedStudio) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(savedStudio)
+        }
+    }).sort({studioName: 1})
+}).delete((req, res) => {
+    studioModel.deleteMany({}, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "All studios deleted!" })
+        }
+    }).sort({studioName: 1})
+}).put((req, res) => {
+    studioModel.updateMany({}, { $set: { studioName: req.body.studioName } }, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "All studios updated!" })
+        }
+    }).sort({studioName: 1})
+}).patch((req, res) => {
+    studioModel.updateMany({}, { $set: { studioName: req.body.studioName } }, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "All studios updated!" })
+        }
+    }).sort({studioName: 1})
+})
+
+app.route("/api/studios/:studioID")
+.get((req, res) => {
+    studioModel.findById(req.params.studioID, (err, studio) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(studio)
+        }
+    }).sort({studioName: 1})
+}).post((req, res) => {
+    const newStudio = new studioModel(req.body)
+    newStudio.save((err, savedStudio) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(savedStudio)
+        }
+    }).sort({studioName: 1})
+}).delete((req, res) => {
+    studioModel.deleteOne({_id: req.params.studioID}, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "Studio deleted!" })
+        }
+    }).sort({studioName: 1})
+}).put((req, res) => {
+    studioModel.updateOne({_id: req.params.studioID}, { $set: { studioName: req.body.studioName } }, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "Studio updated!" })
+        }
+    }).sort({studioName: 1})
+}).patch((req, res) => {
+    studioModel.updateOne({_id: req.params.studioID}, { $set: { studioName: req.body.studioName } }, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({ message: "Studio updated!" })
+        }
+    }).sort({studioName: 1})
+})
+
+
 const port = process.env.PORT || 3001
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)
