@@ -1,9 +1,11 @@
+/* Defining the interface for the Client class. */
 interface IClient {
     _id: bigint;
     firstName: string;
     lastName?: string;
 }
 
+/* The Client class is a class that represents a client. */
 class Client {
     _id: bigint;
     firstName: string;

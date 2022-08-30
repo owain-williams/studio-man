@@ -113,6 +113,115 @@ app.route("/api/studios/:studioID")
         }
     }).sort({ studioName: 1 });
 });
+app.route("/api/studios/:studioID/rooms")
+    .get(function (req, res) {
+    schemas_1.roomModel.find({ studioID: req.params.studioID }, function (err, rooms) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(rooms);
+        }
+    }).sort({ roomName: 1 });
+}).post(function (req, res) {
+    var newRoom = new schemas_1.roomModel(req.body);
+    newRoom.save(function (err, savedRoom) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(savedRoom);
+        }
+    }).sort({ roomName: 1 });
+})["delete"](function (req, res) {
+    schemas_1.roomModel.deleteMany({ studioID: req.params.studioID }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "All rooms deleted!" });
+        }
+    }).sort({ roomName: 1 });
+}).put(function (req, res) {
+    schemas_1.roomModel.updateMany({ studioID: req.params.studioID }, { $set: { roomName: req.body.roomName } }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "All rooms updated!" });
+        }
+    }).sort({ roomName: 1 });
+}).patch(function (req, res) {
+    schemas_1.roomModel.updateMany({ studioID: req.params.studioID }, { $set: { roomName: req.body.roomName } }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "All rooms updated!" });
+        }
+    }).sort({ roomName: 1 });
+});
+app.route("/api/studios/:studioID/rooms/:roomID")
+    .get(function (req, res) {
+    schemas_1.roomModel.findById(req.params.roomID, function (err, room) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(room);
+        }
+    }).sort({ roomName: 1 });
+}).post(function (req, res) {
+    var newRoom = new schemas_1.roomModel(req.body);
+    newRoom.save(function (err, savedRoom) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // TODO: add room to studio
+            schemas_1.studioModel.updateOne({ _id: req.params.studioID }, { $push: { roomIDs: req.params.roomID } }, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.json({ message: "Studio updated!" });
+                }
+            });
+            res.json(savedRoom);
+        }
+    }).sort({ roomName: 1 });
+})["delete"](function (req, res) {
+    schemas_1.roomModel.deleteOne({ _id: req.params.roomID }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "Room deleted!" });
+        }
+    }).sort({ roomName: 1 });
+}).put(function (req, res) {
+    schemas_1.roomModel.updateOne({ _id: req.params.roomID }, { $set: { roomName: req.body.roomName } }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "Room updated!" });
+        }
+    }).sort({ roomName: 1 });
+}).patch(function (req, res) {
+    schemas_1.roomModel.updateOne({ _id: req.params.roomID }, { $set: { roomName: req.body.roomName } }, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json({ message: "Room updated!" });
+        }
+    }).sort({ roomName: 1 });
+});
+// const newStudio = new studioModel({
+//     name: 'Abbey Road Studios'
+// })
+// newStudio.save()
 var port = process.env.PORT || 3001;
 app.listen(port, function () {
     console.log("App listening on port ".concat(port));

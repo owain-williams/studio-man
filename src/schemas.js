@@ -2,11 +2,10 @@
 exports.__esModule = true;
 exports.studioModel = exports.studioSchema = exports.sessionModel = exports.sessionSchema = exports.roomModel = exports.roomSchema = exports.engineerModel = exports.engineerSchema = exports.clientModel = exports.clientSchema = exports.assetModel = exports.assetSchema = exports.bookingModel = exports.bookingSchema = void 0;
 var mongoose = require("mongoose");
-// 
 // Mongoose Schemas
-// 
+/* Creating a schema for the booking model. */
 var bookingSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     clientID: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
     roomID: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' },
     engineerIDs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Engineer' }],
@@ -19,26 +18,26 @@ var bookingSchema = new mongoose.Schema({
 exports.bookingSchema = bookingSchema;
 var bookingModel = mongoose.model('Booking', bookingSchema);
 exports.bookingModel = bookingModel;
-// Assets
+/* Creating a schema for the asset model. */
 var assetSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     name: String
 });
 exports.assetSchema = assetSchema;
 var assetModel = mongoose.model('Asset', assetSchema);
 exports.assetModel = assetModel;
-// Clients
+/* Creating a schema for the client model. */
 var clientSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     firstName: String,
     lastName: String
 });
 exports.clientSchema = clientSchema;
 var clientModel = mongoose.model('Client', clientSchema);
 exports.clientModel = clientModel;
-// Engineers
+/* Creating a schema for the engineer model. */
 var engineerSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     firstName: String,
     lastName: String,
     rate: Number,
@@ -48,9 +47,9 @@ var engineerSchema = new mongoose.Schema({
 exports.engineerSchema = engineerSchema;
 var engineerModel = mongoose.model('Engineer', engineerSchema);
 exports.engineerModel = engineerModel;
-// Rooms
+/* Creating a schema for the room model. */
 var roomSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     name: String,
     assets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Asset' }],
     rate: Number
@@ -58,9 +57,9 @@ var roomSchema = new mongoose.Schema({
 exports.roomSchema = roomSchema;
 var roomModel = mongoose.model('Room', roomSchema);
 exports.roomModel = roomModel;
-// Sessions
+/* Creating a schema for the session model. */
 var sessionSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     startTime: Date,
     endTime: Date,
     hours: Number
@@ -68,11 +67,11 @@ var sessionSchema = new mongoose.Schema({
 exports.sessionSchema = sessionSchema;
 var sessionModel = mongoose.model('Session', sessionSchema);
 exports.sessionModel = sessionModel;
-// Studios
+/* Creating a schema for the studio model. */
 var studioSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     authID: String,
-    studioName: String,
+    name: { type: String, required: true },
     rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }],
     engineers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Engineer' }],
     assets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Asset' }],

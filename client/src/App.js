@@ -1,6 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import * as React from 'react';
+import Navbar from './components/Navbar';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -10,12 +19,12 @@ function App() {
       .then((data) => setData(data.message));
   }, []);
   return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+      <Navbar />
     </div>
+    </ThemeProvider>
   );
 }
 

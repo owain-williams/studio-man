@@ -1,6 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.Booking = void 0;
+/* The Booking class is a class that has a constructor that takes an IBooking object and assigns the
+values of the IBooking object to the Booking class's properties. */
 var Booking = /** @class */ (function () {
     function Booking(booking) {
         this._id = booking._id;

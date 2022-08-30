@@ -1,3 +1,4 @@
+/* Defining an interface that is used to define the properties of the class. */
 interface ISession {
     _id: bigint;
     startTime: Date;
@@ -5,6 +6,8 @@ interface ISession {
     hours?: number;
 }
 
+/* The Session class is a class that has a constructor that takes an object of type ISession and
+assigns the properties of the object to the properties of the class. */
 class Session {
     _id: bigint;
     startTime: Date;
